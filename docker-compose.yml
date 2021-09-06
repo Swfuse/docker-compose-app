@@ -7,7 +7,6 @@ services:
   command: serve -s build -l 3000
   restart: unless-stopped
 
-
  api:
   build: ./api
   container_name: realworld-docker-api
@@ -19,8 +18,10 @@ services:
     - PORT=3001
     - HOST=http://realworld-swfuse.com
     - MONGO_URL=mongodb://api_db:27017/api
+    - AUTH_API_URL=http://auth:3002/api
   depends_on:
     - api_db
+
  api_db:
   image: mongo:latest
   container_name: realworld-docker-api-db
